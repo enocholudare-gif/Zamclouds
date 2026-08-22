@@ -13,20 +13,11 @@ export default function Introduction() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
 
+  const text = "We don't just write code. We architect strategic platforms that solve complex operational challenges, driving measurable growth and long-term resilience for forward-thinking enterprises.";
+  const words = text.split(' ');
+
   useGSAP(() => {
     if (!textRef.current) return;
-    
-    // Split text into words
-    const text = textRef.current.innerText;
-    const words = text.split(' ');
-    textRef.current.innerHTML = '';
-    
-    words.forEach(word => {
-      const span = document.createElement('span');
-      span.innerText = word + ' ';
-      span.className = 'opacity-20 transition-colors inline-block text-primary';
-      textRef.current?.appendChild(span);
-    });
 
     const spans = textRef.current.querySelectorAll('span');
 
@@ -50,7 +41,11 @@ export default function Introduction() {
           ref={textRef} 
           className="text-3xl md:text-5xl lg:text-7xl font-bold font-display leading-[1.2] md:leading-[1.1] tracking-tight"
         >
-          We don't just write code. We architect strategic platforms that solve complex operational challenges, driving measurable growth and long-term resilience for forward-thinking enterprises.
+          {words.map((word, idx) => (
+            <span key={idx} className="opacity-20 transition-colors inline-block text-primary mr-[0.3em]">
+              {word}
+            </span>
+          ))}
         </h2>
       </div>
     </section>
