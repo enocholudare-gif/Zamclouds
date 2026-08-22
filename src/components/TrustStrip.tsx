@@ -1,40 +1,57 @@
+'use client';
+
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
 export default function TrustStrip() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // Ultra smooth GSAP marquee
+    gsap.to(textRef.current, {
+      xPercent: -50,
+      ease: 'none',
+      duration: 35, // Slower, more premium speed
+      repeat: -1,
+    });
+  }, { scope: containerRef });
+
   const items = [
-    { label: 'Mining & Resources', icon: '⛏' },
-    { label: 'Agriculture', icon: '🌾' },
-    { label: 'Finance & Banking', icon: '🏦' },
-    { label: 'Government', icon: '🏛' },
-    { label: 'Retail & Logistics', icon: '📦' },
-    { label: 'Enterprise & SMEs', icon: '🏢' },
-    { label: 'Cloud Infrastructure', icon: '☁️' },
-    { label: 'Artificial Intelligence', icon: '🧠' },
+    'Mining & Resources', 'Agriculture', 'Finance & Banking', 
+    'Government', 'Retail & Logistics', 'Enterprise & SMEs', 
+    'Cloud Infrastructure', 'Artificial Intelligence'
   ];
 
-  // Double the items for seamless infinite scroll
-  const marqueeItems = [...items, ...items, ...items];
+  // Quadruple items for safe infinite scrolling width
+  const marqueeItems = [...items, ...items, ...items, ...items];
 
   return (
-    <section className="bg-white border-y border-gray-100 py-6 overflow-hidden relative">
-      {/* Gradient masks for smooth fade in/out on edges */}
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+    <section ref={containerRef} className="bg-dark text-white border-y border-white/10 py-8 overflow-hidden relative">
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-dark to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-dark to-transparent z-10 pointer-events-none" />
       
-      <div className="container mx-auto px-6 max-w-7xl mb-4">
-        <p className="text-center text-xs uppercase tracking-widest text-gray-400 font-semibold">
-          Industries & Technologies we power across Zambia
+      <div className="container mx-auto px-6 max-w-7xl mb-6">
+        <p className="text-center text-xs uppercase tracking-widest text-gray-500 font-bold">
+          Industries & Technologies we power across Africa
         </p>
       </div>
 
-      <div className="flex w-max animate-marquee">
-        {marqueeItems.map((item, idx) => (
-          <div 
-            key={`${item.label}-${idx}`} 
-            className="flex items-center gap-3 text-gray-700 font-medium text-sm whitespace-nowrap mx-8 hover:text-accent transition-colors duration-300 cursor-default"
-          >
-            <span className="text-xl bg-gray-50 rounded-full p-2 border border-gray-100 shadow-sm">{item.icon}</span>
-            <span className="tracking-wide">{item.label}</span>
-          </div>
-        ))}
+      <div className="flex whitespace-nowrap overflow-hidden">
+        <div ref={textRef} className="flex w-max items-center">
+          {marqueeItems.map((item, idx) => (
+            <div 
+              key={`${item}-${idx}`} 
+              className="flex items-center gap-4 md:gap-6 mx-4 md:mx-8 group"
+            >
+              <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-accent/50 group-hover:bg-accent transition-colors duration-500" />
+              <span className="text-2xl md:text-5xl font-display font-bold text-gray-700 group-hover:text-white transition-colors duration-500 uppercase tracking-tighter cursor-default">
+                {item}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

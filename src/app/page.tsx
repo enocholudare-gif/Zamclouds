@@ -1,24 +1,26 @@
 import Hero from '@/components/Hero';
+import Introduction from '@/components/Introduction';
 import TrustStrip from '@/components/TrustStrip';
 import Differentiators from '@/components/Differentiators';
 import Services from '@/components/Services';
-import Industries from '@/components/Industries';
-import AISection from '@/components/AISection';
 import CaseStudies from '@/components/CaseStudies';
-import TechCredibility from '@/components/TechCredibility';
+import AboutSection from '@/components/AboutSection';
+import Industries from '@/components/Industries';
+import InsightsSection from '@/components/InsightsSection';
 import CTASection from '@/components/CTASection';
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Introduction />
       <TrustStrip />
       <Differentiators />
       <Services />
-      <Industries />
-      <AISection />
       <CaseStudies />
-      <TechCredibility />
+      <AboutSection />
+      <Industries />
+      <InsightsSection />
       <CTASection />
     </>
   );

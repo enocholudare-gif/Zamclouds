@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SmoothScroll from '@/components/SmoothScroll';
+import CustomCursor from '@/components/CustomCursor';
 
 export const metadata: Metadata = {
   title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions in Zambia',
@@ -42,10 +44,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased font-sans text-gray-800 bg-white">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+      <body className="antialiased font-sans text-gray-200 bg-[#050505]">
+        <SmoothScroll>
+          <CustomCursor />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

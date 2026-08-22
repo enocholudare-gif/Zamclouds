@@ -1,22 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
   { label: 'Industries', href: '/industries' },
-  { label: 'Solutions / AI', href: '/solutions' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -24,81 +27,130 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-primary/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center font-bold text-white text-lg font-display">Z</div>
-            <span className="font-bold text-white text-lg leading-tight font-display">
-              ZCP<span className="hidden sm:inline text-accent"> ·</span>
-              <span className="hidden sm:inline text-gray-300 font-normal text-sm ml-1">Zambian Cloud Programmers</span>
-            </span>
-          </Link>
+  useGSAP(() => {
+    if (open) {
+      gsap.fromTo(
+        menuRef.current,
+        { clipPath: 'inset(0% 0% 100% 0%)' },
+        { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, ease: 'expo.inOut' }
+      );
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.slice(0, -1).map((link) => (
+      gsap.fromTo(
+        linksRef.current,
+        { y: '100%', rotateZ: 5, opacity: 0 },
+        { y: '0%', rotateZ: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: 'power4.out', delay: 0.4 }
+      );
+    }
+  }, [open]);
+
+  const closeMenu = () => {
+    gsap.to(linksRef.current, {
+      y: '-100%',
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.02,
+      ease: 'power3.in'
+    });
+    
+    gsap.to(menuRef.current, {
+      clipPath: 'inset(0% 0% 100% 0%)',
+      duration: 0.6,
+      ease: 'expo.inOut',
+      delay: 0.2,
+      onComplete: () => setOpen(false)
+    });
+  };
+
+  const addLinkRef = (el: HTMLAnchorElement) => {
+    if (el && !linksRef.current.includes(el)) {
+      linksRef.current.push(el);
+    }
+  };
+
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? 'bg-dark-elevated/90 backdrop-blur-xl py-3 border-b border-white/5' : 'bg-transparent py-5'
+        }`}
+      >
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 relative z-[60] group hover-target" onClick={() => open && closeMenu()}>
+              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-bold text-white text-xl font-display transition-transform group-hover:scale-110">Z</div>
+              <span className="font-bold text-white text-xl leading-tight font-display tracking-tight">
+                ZCP<span className="text-accent">.</span>
+              </span>
+            </Link>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-8 bg-white/5 px-8 py-3 rounded-full border border-white/10 backdrop-blur-md">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-semibold tracking-wide uppercase text-gray-300 hover:text-white transition-colors hover-target"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* CTA & Mobile Toggle */}
+            <div className="flex items-center gap-4 relative z-[60]">
               <Link
-                key={link.href}
+                href="/contact"
+                className="hidden lg:inline-flex items-center justify-center h-12 px-6 rounded-full bg-white text-dark font-bold text-sm tracking-wide uppercase hover:bg-gray-200 transition-colors hover-target"
+              >
+                Let's Talk
+              </Link>
+              
+              <button
+                onClick={() => (open ? closeMenu() : setOpen(true))}
+                className="lg:hidden w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover-target"
+                aria-label="Toggle menu"
+              >
+                {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Full Screen Menu */}
+      <div 
+        ref={menuRef}
+        className={`fixed inset-0 z-40 bg-dark flex flex-col justify-center px-6 lg:px-20 ${!open && 'pointer-events-none opacity-0'}`}
+        style={{ clipPath: 'inset(0% 0% 100% 0%)' }}
+      >
+        <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
+        
+        <nav className="flex flex-col gap-4 mt-20">
+          {navLinks.map((link) => (
+            <div key={link.href} className="overflow-hidden">
+              <Link
+                ref={addLinkRef}
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+                onClick={closeMenu}
+                className="block text-5xl md:text-7xl font-display font-bold text-white hover:text-accent transition-colors origin-bottom-left"
               >
                 {link.label}
               </Link>
-            ))}
-          </nav>
-
-          {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+            </div>
+          ))}
+          <div className="overflow-hidden mt-8">
             <Link
+              ref={addLinkRef}
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-amber-600 transition-colors"
+              onClick={closeMenu}
+              className="inline-flex items-center gap-4 text-2xl font-bold text-accent hover:text-white transition-colors origin-bottom-left"
             >
-              Start a Project <ArrowRight className="w-4 h-4" />
+              Start a Project <ArrowRight className="w-8 h-8" />
             </Link>
           </div>
-
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            className="lg:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        </nav>
       </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <div className="lg:hidden bg-primary/98 backdrop-blur-md border-t border-white/10 px-6 pb-6">
-          <nav className="flex flex-col gap-1 pt-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-gray-300 hover:text-white hover:bg-white/10 px-4 py-3 rounded-lg font-medium transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center gap-2 bg-accent text-white font-semibold px-5 py-3 rounded-lg hover:bg-amber-600 transition-colors"
-            >
-              Start a Project <ArrowRight className="w-4 h-4" />
-            </Link>
-          </nav>
-        </div>
-      )}
-    </header>
+    </>
   );
 }

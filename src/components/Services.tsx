@@ -1,148 +1,103 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
-import { 
-  ArrowRight, 
-  LineChart, 
-  Send, 
-  ShieldCheck, 
-  Lock, 
-  Layers, 
-  Headset, 
-  LifeBuoy
-} from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-// Extracted directly from zamclouds.com live content
 const services = [
   {
-    icon: Lock,
+    id: '01',
     title: 'IT Consulting',
-    description: 'Our experts provide insights and strategies to help you navigate the ever-evolving technological landscape.',
-    href: '/contact',
-    gradient: 'from-blue-500/20 to-cyan-500/20'
+    description: 'Strategic technological guidance to help you navigate digital transformation and infrastructure modernization.',
+    image: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
-    icon: Send,
-    title: 'Digital Marketing',
-    description: 'We help businesses grow their online presence and reach their target audience through effective digital marketing strategies.',
-    href: '/contact',
-    gradient: 'from-pink-500/20 to-rose-500/20'
+    id: '02',
+    title: 'Cloud Infrastructure',
+    description: 'Scalable, secure, and highly available cloud architecture designed for enterprise workloads.',
+    image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
-    icon: LineChart,
+    id: '03',
     title: 'Data Analytics',
-    description: 'Our data analytics services provide actionable insights to drive informed business decisions and improve performance.',
-    href: '/contact',
-    gradient: 'from-emerald-500/20 to-teal-500/20'
+    description: 'Transform raw data into actionable business intelligence with custom dashboards and predictive models.',
+    image: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
-    icon: Layers,
-    title: 'Scalability',
-    description: 'Our solutions are built to grow with your business, ensuring long-term success and adaptable infrastructure.',
-    href: '/contact',
-    gradient: 'from-purple-500/20 to-indigo-500/20'
-  },
-  {
-    icon: Headset,
-    title: 'User-Friendly Interfaces',
-    description: 'We prioritize user experience in all our software, making it easy for everyone to navigate and utilize.',
-    href: '/contact',
-    gradient: 'from-amber-500/20 to-orange-500/20'
-  },
-  {
-    icon: ShieldCheck,
-    title: '24/7 Technical Support',
-    description: 'Our dedicated support team is available around the clock to assist you and ensure your systems are running smoothly.',
-    href: '/contact',
-    gradient: 'from-red-500/20 to-pink-500/20'
+    id: '04',
+    title: 'Artificial Intelligence',
+    description: 'Practical AI integration automating workflows, enhancing decision-making, and driving efficiency.',
+    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800'
   }
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { type: "spring", stiffness: 50, duration: 0.5 }
-  }
-};
-
 export default function Services() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section id="services" className="py-24 bg-gray-50 relative overflow-hidden">
-      {/* Decorative background blur */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/4" />
-      
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+    <section className="py-24 bg-dark text-white relative">
+      <div className="container mx-auto px-6 max-w-7xl">
+        
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
-            <p className="text-accent text-sm uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
-              <span className="w-8 h-px bg-accent inline-block"></span>
-              Our Services & Features
-            </p>
-            <h2 className="text-4xl lg:text-5xl font-bold font-display text-primary leading-tight">
-              Discover comprehensive services tailored for your business.
+          <div className="max-w-3xl">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold font-display leading-[1.05] tracking-tight">
+              We build solutions <br />
+              <span className="text-gray-500">that scale effortlessly.</span>
             </h2>
           </div>
-          <Link href="/services" className="inline-flex items-center text-accent font-semibold hover:text-accent-light transition-colors gap-2 shrink-0 group">
-            Explore Our Services 
-            <span className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-              <ArrowRight className="w-4 h-4" />
-            </span>
+          <Link href="/services" className="inline-flex items-center gap-4 text-lg font-bold uppercase tracking-wide hover:text-accent transition-colors hover-target" data-cursor="interactive">
+            All Services <ArrowRight className="w-6 h-6" />
           </Link>
         </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {services.map((service) => {
-            const Icon = service.icon;
+        <div className="border-t border-white/10">
+          {services.map((service, idx) => {
+            const isHovered = hoveredIndex === idx;
+            
             return (
-              <motion.div key={service.title} variants={cardVariants} className="h-full">
-                <Link
-                  href={service.href}
-                  className="group relative flex flex-col p-8 rounded-2xl border border-gray-200 bg-white hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden h-full z-10"
-                >
-                  {/* Hover Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
-                  
-                  <div className="w-14 h-14 rounded-xl bg-primary/5 flex items-center justify-center mb-8 group-hover:bg-white group-hover:shadow-md transition-all duration-300 relative">
-                    <Icon className="w-7 h-7 text-primary group-hover:text-accent transition-colors relative z-10" />
+              <div 
+                key={service.id}
+                className="group relative border-b border-white/10 transition-colors duration-500 hover:bg-white/5"
+                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <Link href="/contact" className="block py-10 px-4 md:px-8 hover-target" data-cursor="interactive">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
+                    
+                    <div className="flex items-start md:items-center gap-8 md:gap-16 w-full md:w-1/2">
+                      <span className={`text-xl font-mono font-bold transition-colors duration-500 ${isHovered ? 'text-accent' : 'text-gray-500'}`}>
+                        {service.id}
+                      </span>
+                      <h3 className={`text-3xl md:text-5xl font-display font-bold transition-transform duration-500 ${isHovered ? 'md:translate-x-4' : ''}`}>
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    <div className="w-full md:w-1/2 flex items-center justify-between gap-8">
+                      <div className={`overflow-hidden transition-all duration-500 ${isHovered ? 'max-h-40 opacity-100' : 'max-h-0 md:max-h-40 opacity-0 md:opacity-0 md:-translate-x-8'}`}>
+                        <p className="text-gray-400 text-lg">
+                          {service.description}
+                        </p>
+                      </div>
+                      
+                      <div className={`w-12 h-12 rounded-full border border-white/20 flex items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
+                    </div>
                   </div>
-                  
-                  <h3 className="text-2xl font-bold text-primary mb-4 font-display group-hover:translate-x-1 transition-transform duration-300">{service.title}</h3>
-                  <p className="text-gray-500 leading-relaxed text-sm flex-1 mb-8 group-hover:text-gray-800 transition-colors duration-300">
-                    {service.description}
-                  </p>
-                  
-                  <div className="mt-auto flex items-center text-accent text-sm font-bold gap-2 overflow-hidden">
-                    <span className="transform -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2">
-                      Learn more <ArrowRight className="w-4 h-4" />
-                    </span>
-                    <span className="absolute transform translate-x-0 opacity-100 group-hover:translate-x-full group-hover:opacity-0 transition-all duration-300">
-                      Explore
-                    </span>
+
+                  {/* Hover/Tap Image Reveal */}
+                  <div 
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 h-40 md:h-48 overflow-hidden rounded-xl pointer-events-none z-0 transition-all duration-700 ${isHovered ? 'opacity-100 scale-100 rotate-2' : 'opacity-0 scale-50 rotate-0'}`}
+                  >
+                    <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
