@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero';
-import Introduction from '@/components/Introduction';
 import TrustStrip from '@/components/TrustStrip';
 import Differentiators from '@/components/Differentiators';
 import Services from '@/components/Services';
@@ -13,7 +12,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Introduction />
       <TrustStrip />
       <Differentiators />
       <Services />
