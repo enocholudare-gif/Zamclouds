@@ -102,14 +102,17 @@ export default function Services() {
                       </h3>
                     </div>
 
-                    <div className="w-full md:w-1/2 flex items-center justify-between gap-4 md:gap-8">
-                      <div className={`overflow-hidden transition-all duration-500 max-h-40 opacity-100 md:max-h-40 ${isHovered ? 'md:opacity-100 md:translate-x-0' : 'md:opacity-0 md:-translate-x-8'}`}>
-                        <p className="text-gray-400 text-base md:text-lg">
+                    <div className="w-full md:w-1/2 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-8 mt-4 md:mt-0">
+                      <div className={`overflow-hidden transition-all duration-500 max-h-96 opacity-100 md:max-h-40 ${isHovered ? 'md:opacity-100 md:translate-x-0' : 'md:opacity-0 md:-translate-x-8'}`}>
+                        <p className="text-gray-400 text-base md:text-lg mb-4 md:mb-0">
                           {service.description}
                         </p>
+                        <div className="md:hidden w-full h-40 overflow-hidden rounded-xl mt-4">
+                          <img src={service.image} alt={service.title} className="w-full h-full object-cover opacity-80" />
+                        </div>
                       </div>
                       
-                      <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>
+                      <div className={`hidden md:flex w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>
                         <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                       </div>
                     </div>

@@ -44,25 +44,36 @@ function FlipCard({ d }: { d: typeof differentiators[0] }) {
 
   return (
     <div 
-      className="diff-card relative h-64 w-full [perspective:1000px] cursor-pointer group opacity-0 translate-y-10"
+      className="diff-card relative w-full cursor-pointer group opacity-0 translate-y-10"
       onClick={() => setIsFlipped(!isFlipped)}
     >
-      <div 
-        className={`absolute inset-0 w-full h-full transition-all duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}
-      >
-        {/* Front */}
-        <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] p-8 rounded-2xl border border-gray-200 bg-white flex flex-col items-center justify-center text-center hover:shadow-xl transition-shadow group-hover:border-accent/30">
-          <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-6 transition-colors">
-            <Icon className="w-8 h-8 text-primary transition-colors" />
-          </div>
-          <h3 className="text-xl md:text-2xl font-bold font-display text-primary">{d.title}</h3>
-          <p className="text-xs text-accent uppercase tracking-widest font-bold mt-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity">Tap to read</p>
+      {/* Mobile Design: Combined Card (No Flip) */}
+      <div className="md:hidden flex flex-col p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-xl transition-all shadow-sm">
+        <div className="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center mb-6">
+          <Icon className="w-7 h-7 text-primary" />
         </div>
+        <h3 className="text-xl font-bold font-display text-primary mb-3">{d.title}</h3>
+        <p className="text-gray-600 text-sm leading-relaxed">{d.body}</p>
+      </div>
 
-        {/* Back */}
-        <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 rounded-2xl bg-accent text-white flex flex-col justify-center items-center text-center shadow-lg">
-          <h3 className="text-lg font-bold font-display mb-4 border-b border-white/20 pb-4">{d.title}</h3>
-          <p className="text-white/90 leading-relaxed font-medium text-sm md:text-base">{d.body}</p>
+      {/* Desktop Design: 3D Flip Card */}
+      <div className="hidden md:block relative h-64 w-full [perspective:1000px]">
+        <div 
+          className={`absolute inset-0 w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}
+        >
+          {/* Front */}
+          <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] p-8 rounded-2xl border border-gray-200 bg-white flex flex-col items-center justify-center text-center shadow-sm group-hover:border-accent/30">
+            <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-6 transition-colors">
+              <Icon className="w-8 h-8 text-primary transition-colors" />
+            </div>
+            <h3 className="text-xl lg:text-2xl font-bold font-display text-primary">{d.title}</h3>
+          </div>
+
+          {/* Back */}
+          <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 rounded-2xl bg-accent text-white flex flex-col justify-center items-center text-center shadow-lg">
+            <h3 className="text-lg font-bold font-display mb-4 border-b border-white/20 pb-4">{d.title}</h3>
+            <p className="text-white/90 leading-relaxed font-medium text-sm">{d.body}</p>
+          </div>
         </div>
       </div>
     </div>
