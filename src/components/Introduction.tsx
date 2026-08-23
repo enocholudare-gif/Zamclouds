@@ -42,8 +42,8 @@ export default function Introduction() {
           className="text-3xl md:text-5xl lg:text-7xl font-bold font-display leading-[1.2] md:leading-[1.1] tracking-tight"
         >
           {words.map((word, idx) => (
-            <span key={idx} className="opacity-20 transition-colors inline-block text-primary mr-[0.3em]">
-              {word}
+            <span key={idx} className="opacity-20 transition-colors inline-block text-primary">
+              {word}&nbsp;
             </span>
           ))}
         </h2>
