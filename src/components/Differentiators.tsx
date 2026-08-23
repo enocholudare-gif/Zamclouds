@@ -1,7 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { Layers, MapPin, Zap, Shield, Wrench, X } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Layers, MapPin, Zap, Shield, Wrench } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const differentiators = [
   {
@@ -33,13 +40,15 @@ const differentiators = [
 
 function FlipCard({ d }: { d: typeof differentiators[0] }) {
   const Icon = d.icon;
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <div 
-      className="relative h-64 w-full [perspective:1000px] cursor-pointer group"
+      className="diff-card relative h-64 w-full [perspective:1000px] cursor-pointer group opacity-0 translate-y-10"
+      onClick={() => setIsFlipped(!isFlipped)}
     >
       <div 
-        className="absolute inset-0 w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
+        className={`absolute inset-0 w-full h-full transition-all duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}
       >
         {/* Front */}
         <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] p-8 rounded-2xl border border-gray-200 bg-white flex flex-col items-center justify-center text-center hover:shadow-xl transition-shadow group-hover:border-accent/30">
@@ -47,7 +56,7 @@ function FlipCard({ d }: { d: typeof differentiators[0] }) {
             <Icon className="w-8 h-8 text-primary transition-colors" />
           </div>
           <h3 className="text-xl md:text-2xl font-bold font-display text-primary">{d.title}</h3>
-          <p className="text-xs text-accent uppercase tracking-widest font-bold mt-4 opacity-100 transition-opacity">Hover to read</p>
+          <p className="text-xs text-accent uppercase tracking-widest font-bold mt-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity">Tap to read</p>
         </div>
 
         {/* Back */}
@@ -61,10 +70,30 @@ function FlipCard({ d }: { d: typeof differentiators[0] }) {
 }
 
 export default function Differentiators() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const cards = containerRef.current?.querySelectorAll('.diff-card');
+    
+    if (cards) {
+      gsap.to(cards, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 70%',
+        }
+      });
+    }
+  }, { scope: containerRef });
+
   return (
-    <section className="py-24 bg-gray-50 text-dark relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-gray-50 text-dark relative overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="max-w-2xl mb-16 text-center mx-auto">
+        <div className="max-w-2xl mb-16 text-center mx-auto diff-header">
           <p className="text-accent text-sm uppercase tracking-widest font-bold mb-4 flex items-center justify-center gap-2">
             <span className="w-8 h-px bg-accent inline-block"></span>
             Why Choose Us

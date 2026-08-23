@@ -1,8 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const services = [
   {
@@ -33,9 +40,31 @@ const services = [
 
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const items = containerRef.current?.querySelectorAll('.service-item');
+    
+    if (items) {
+      gsap.fromTo(items, 
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+    }
+  }, { scope: containerRef });
 
   return (
-    <section className="py-24 bg-dark text-white relative">
+    <section ref={containerRef} className="py-24 bg-dark text-white relative">
       <div className="container mx-auto px-6 max-w-7xl">
         
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 gap-6">
@@ -57,38 +86,38 @@ export default function Services() {
             return (
               <div 
                 key={service.id}
-                className="group relative border-b border-white/10 transition-colors duration-500 hover:bg-white/5"
+                className="service-item group relative border-b border-white/10 transition-colors duration-500 hover:bg-white/5 opacity-0"
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <Link href="/contact" className="block py-10 px-4 md:px-8 hover-target" data-cursor="interactive">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
                     
-                    <div className="flex items-start md:items-center gap-8 md:gap-16 w-full md:w-1/2">
+                    <div className="flex items-start md:items-center gap-4 md:gap-16 w-full md:w-1/2">
                       <span className={`text-xl font-mono font-bold transition-colors duration-500 ${isHovered ? 'text-accent' : 'text-gray-500'}`}>
                         {service.id}
                       </span>
-                      <h3 className={`text-3xl md:text-5xl font-display font-bold transition-transform duration-500 ${isHovered ? 'md:translate-x-4' : ''}`}>
+                      <h3 className={`text-2xl md:text-5xl font-display font-bold transition-transform duration-500 ${isHovered ? 'md:translate-x-4' : ''}`}>
                         {service.title}
                       </h3>
                     </div>
 
-                    <div className="w-full md:w-1/2 flex items-center justify-between gap-8">
-                      <div className={`overflow-hidden transition-all duration-500 ${isHovered ? 'max-h-40 opacity-100' : 'max-h-0 md:max-h-40 opacity-0 md:opacity-0 md:-translate-x-8'}`}>
-                        <p className="text-gray-400 text-lg">
+                    <div className="w-full md:w-1/2 flex items-center justify-between gap-4 md:gap-8">
+                      <div className={`overflow-hidden transition-all duration-500 max-h-40 opacity-100 md:max-h-40 ${isHovered ? 'md:opacity-100 md:translate-x-0' : 'md:opacity-0 md:-translate-x-8'}`}>
+                        <p className="text-gray-400 text-base md:text-lg">
                           {service.description}
                         </p>
                       </div>
                       
-                      <div className={`w-12 h-12 rounded-full border border-white/20 flex items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>
-                        <ArrowRight className="w-5 h-5" />
+                      <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>
+                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Hover/Tap Image Reveal */}
+                  {/* Hover Image Reveal (Hidden on Mobile) */}
                   <div 
-                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 h-40 md:h-48 overflow-hidden rounded-xl pointer-events-none z-0 transition-all duration-700 ${isHovered ? 'opacity-100 scale-100 rotate-2' : 'opacity-0 scale-50 rotate-0'}`}
+                    className={`hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 h-40 md:h-48 overflow-hidden rounded-xl pointer-events-none z-0 transition-all duration-700 ${isHovered ? 'opacity-100 scale-100 rotate-2' : 'opacity-0 scale-50 rotate-0'}`}
                   >
                     <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />

@@ -1,5 +1,13 @@
-import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+'use client';
+
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const industries = [
   {
@@ -47,8 +55,31 @@ const industries = [
 ];
 
 export default function Industries() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const cards = containerRef.current?.querySelectorAll('.industry-card');
+    
+    if (cards) {
+      gsap.fromTo(cards, 
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 70%',
+          }
+        }
+      );
+    }
+  }, { scope: containerRef });
+
   return (
-    <section id="industries" className="py-24 bg-white relative overflow-hidden">
+    <section id="industries" ref={containerRef} className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between max-w-5xl mx-auto mb-16 gap-8 text-center md:text-left">
           <div className="flex-1">
@@ -71,19 +102,19 @@ export default function Industries() {
           {industries.map((industry) => (
             <div 
               key={industry.slug} 
-              className="group relative h-96 rounded-2xl overflow-hidden hover-target cursor-pointer"
+              className="industry-card group relative h-96 md:h-[450px] rounded-2xl overflow-hidden hover-target cursor-pointer opacity-0"
               data-cursor="explore"
             >
               {/* Background Image */}
               <div className="absolute inset-0 w-full h-full bg-primary z-0">
                 <img src={industry.image} alt={industry.title} className="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
               </div>
 
               {/* Content */}
-              <div className="absolute inset-0 z-10 flex flex-col justify-end p-8 text-white">
-                <h3 className="text-2xl md:text-3xl font-bold font-display mb-4 group-hover:-translate-y-2 transition-transform duration-500">{industry.title}</h3>
-                <div className="max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100 transition-all duration-500 overflow-hidden">
+              <div className="absolute inset-0 z-10 flex flex-col justify-end p-6 md:p-8 text-white">
+                <h3 className="text-2xl md:text-3xl font-bold font-display mb-4 lg:group-hover:-translate-y-2 transition-transform duration-500">{industry.title}</h3>
+                <div className="max-h-[300px] opacity-100 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-48 lg:group-hover:opacity-100 transition-all duration-500 overflow-hidden">
                   <p className="text-gray-300 text-sm leading-relaxed mb-6">
                     {industry.description}
                   </p>
