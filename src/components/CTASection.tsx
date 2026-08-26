@@ -12,11 +12,11 @@ export default function CTASection() {
 
       <div className="container mx-auto px-6 relative z-10">
         <p className="text-accent text-sm md:text-base uppercase tracking-widest font-bold mb-8">
-          Let's build something great.
+          Have a system in mind?
         </p>
         
-        <h2 className="text-5xl md:text-8xl lg:text-9xl font-bold font-display leading-none tracking-tighter mb-16">
-          Ready to <br/> scale?
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-tight tracking-tighter mb-16">
+          Let's turn it into <br className="hidden md:block" /> something that works.
         </h2>
 
         <Link 

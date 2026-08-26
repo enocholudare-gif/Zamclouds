@@ -1,25 +1,30 @@
 import Hero from '@/components/Hero';
 import TrustStrip from '@/components/TrustStrip';
-import Differentiators from '@/components/Differentiators';
 import Services from '@/components/Services';
-import CaseStudies from '@/components/CaseStudies';
-import AboutSection from '@/components/AboutSection';
+import Products from '@/components/Products';
 import Industries from '@/components/Industries';
+import CaseStudies from '@/components/CaseStudies';
+import HowWeWork from '@/components/HowWeWork';
+import AISection from '@/components/AISection';
+import Differentiators from '@/components/Differentiators';
 import InsightsSection from '@/components/InsightsSection';
-import CTASection from '@/components/CTASection';
+import ContactSection from '@/components/ContactSection';
 
 export default function Home() {
   return (
     <>
       <Hero />
       <TrustStrip />
-      <Differentiators />
       <Services />
-      <CaseStudies />
-      <AboutSection />
+      <Products />
       <Industries />
+      <CaseStudies />
+      <HowWeWork />
+      <AISection />
+      <Differentiators />
+      {/* Testimonials placeholder */}
       <InsightsSection />
-      <CTASection />
+      <ContactSection />
     </>
   );
 }

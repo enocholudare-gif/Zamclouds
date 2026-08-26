@@ -13,29 +13,19 @@ if (typeof window !== 'undefined') {
 const differentiators = [
   {
     icon: Layers,
-    title: 'Built Around Your Business',
-    body: 'Bespoke systems designed around actual operational workflows, not forcing your business into generic off-the-shelf software.',
-  },
-  {
-    icon: MapPin,
-    title: 'Local Business Understanding',
-    body: 'Technology solutions designed with real knowledge of African business environments, regulatory realities, and industry conditions.',
+    title: 'Digitize',
+    body: 'We move your operations from manual, fragmented processes to unified, secure digital platforms.',
   },
   {
     icon: Zap,
-    title: 'AI Where It Creates Value',
-    body: 'Practical AI focused on automation, decision support, analytics and operational efficiency — not technology for its own sake.',
+    title: 'Automate',
+    body: 'We implement intelligent logic and AI to reduce human error, speed up execution, and eliminate repetitive tasks.',
   },
   {
     icon: Shield,
-    title: 'Cloud-Ready Architecture',
-    body: 'Secure, scalable infrastructure engineered for modern business operations with a focus on reliability and long-term maintainability.',
-  },
-  {
-    icon: Wrench,
-    title: 'Engineering-Led Delivery',
-    body: 'Emphasis on software engineering quality — clean code, comprehensive testing, security-first thinking and long-term support.',
-  },
+    title: 'Scale',
+    body: 'We build on flexible cloud architecture designed to handle exponential growth in users, data, and transactions.',
+  }
 ];
 
 function FlipCard({ d }: { d: typeof differentiators[0] }) {
@@ -96,11 +86,11 @@ export default function Differentiators() {
         <div className="max-w-2xl mb-16 text-center mx-auto diff-header">
           <p className="text-accent text-sm uppercase tracking-widest font-bold mb-4 flex items-center justify-center gap-2">
             <span className="w-8 h-px bg-accent inline-block"></span>
-            Why Choose Us
+            Our Philosophy
             <span className="w-8 h-px bg-accent inline-block"></span>
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display leading-[1.1] tracking-tight">
-            What makes us a different kind of technology partner.
+            Digitize. Automate. Scale.
           </h2>
         </div>
 

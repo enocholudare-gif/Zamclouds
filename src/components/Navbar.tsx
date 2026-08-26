@@ -9,10 +9,13 @@ import { useGSAP } from '@gsap/react';
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
-  { label: 'Industries', href: '/industries' },
   { label: 'Solutions', href: '/solutions' },
-  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Products', href: '/products' },
+  { label: 'Work', href: '/case-studies' },
+  { label: 'Insights', href: '/insights' },
   { label: 'About', href: '/about' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 export default function Navbar() {
@@ -78,10 +81,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 relative z-[60] group hover-target" onClick={() => open && closeMenu()}>
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-bold text-white text-xl font-display transition-transform group-hover:scale-110">Z</div>
-              <span className="font-bold text-white text-xl leading-tight font-display tracking-tight">
-                ZCP<span className="text-accent">.</span>
-              </span>
+              <img src="https://cdn.phototourl.com/free/2026-08-26-292fda2e-7a31-44fe-8e5d-266a456c1b1f.png" alt="Zamclouds Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
             </Link>
 
             {/* Desktop Nav */}
@@ -103,7 +103,7 @@ export default function Navbar() {
                 href="/contact"
                 className="hidden lg:inline-flex items-center justify-center h-12 px-6 rounded-full bg-white text-dark font-bold text-sm tracking-wide uppercase hover:bg-gray-200 transition-colors hover-target"
               >
-                Let's Talk
+                Start a Project
               </Link>
               
               <button

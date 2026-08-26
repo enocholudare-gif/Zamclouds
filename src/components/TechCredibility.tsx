@@ -1,3 +1,14 @@
+'use client';
+
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
+
 const techStack = [
   {
     category: 'Frontend',
@@ -18,8 +29,27 @@ const techStack = [
 ];
 
 export default function TechCredibility() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const cards = containerRef.current?.querySelectorAll('.tech-card');
+    if (cards) {
+      gsap.fromTo(cards, 
+        { y: 30, opacity: 0, scale: 0.95 },
+        { 
+          y: 0, opacity: 1, scale: 1, 
+          duration: 0.6, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%'
+          }
+        }
+      );
+    }
+  }, { scope: containerRef });
+
   return (
-    <section className="py-24 bg-gray-50 border-t border-gray-100">
+    <section ref={containerRef} className="py-24 bg-gray-50 border-t border-gray-100">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-14">
           <p className="text-accent text-sm uppercase tracking-widest font-semibold mb-4">Engineering Capability</p>
@@ -29,7 +59,7 @@ export default function TechCredibility() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {techStack.map((group) => (
-            <div key={group.category} className="bg-white rounded-xl p-6 border border-gray-200">
+            <div key={group.category} className="tech-card bg-white rounded-xl p-6 border border-gray-200 hover:border-accent/30 transition-colors shadow-sm">
               <h4 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">{group.category}</h4>
               <ul className="space-y-2">
                 {group.items.map((item) => (

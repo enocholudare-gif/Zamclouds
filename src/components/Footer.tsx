@@ -2,20 +2,28 @@ import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const services = [
-  { label: 'Custom Software Development', href: '/services#software' },
-  { label: 'Cloud Solutions', href: '/services#cloud' },
-  { label: 'Web & Mobile Development', href: '/services#web-mobile' },
-  { label: 'E-Commerce Solutions', href: '/services#ecommerce' },
-  { label: 'AI & Data Analytics', href: '/services#ai' },
-  { label: 'IT Consulting', href: '/services#consulting' },
-  { label: 'Hosting', href: '/hosting' },
+  { label: 'Custom Software Engineering', href: '/services/custom-software-engineering' },
+  { label: 'Web & Mobile Applications', href: '/services/web-mobile-applications' },
+  { label: 'Cloud & DevOps', href: '/services/cloud-devops' },
+  { label: 'AI & Automation', href: '/services/ai-automation' },
+  { label: 'Data & Business Intelligence', href: '/services/data-business-intelligence' },
+  { label: 'Systems Integration & APIs', href: '/services/systems-integration' },
+  { label: 'Technology Consulting', href: '/services/technology-consulting' },
+  { label: 'Managed Hosting', href: '/services/managed-hosting' },
+];
+
+const solutions = [
+  { label: 'ERP & Workflow', href: '/solutions/erp-business-management' },
+  { label: 'Microfinance & Lending', href: '/solutions/microfinance-lending' },
+  { label: 'Mining Operations', href: '/industries/mining' },
+  { label: 'Financial Services', href: '/industries/finance-banking' },
 ];
 
 const company = [
   { label: 'About ZCP', href: '/about' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Industries', href: '/industries' },
-  { label: 'AI & Solutions', href: '/solutions' },
+  { label: 'Work', href: '/case-studies' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Security', href: '/security' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -23,12 +31,11 @@ export default function Footer() {
   return (
     <footer className="bg-dark text-white pt-20 pb-10">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center font-bold text-white text-lg font-display">Z</div>
-              <span className="font-bold text-white text-lg font-display">ZCP</span>
+            <Link href="/" className="flex items-center gap-3 mb-5 hover-target">
+              <img src="https://cdn.phototourl.com/free/2026-08-26-292fda2e-7a31-44fe-8e5d-266a456c1b1f.png" alt="Zamclouds Logo" className="h-10 w-auto object-contain transition-transform hover:scale-105" />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Zambian Cloud Programmers builds bespoke software, cloud infrastructure and practical AI systems for businesses operating in Zambia and beyond.
@@ -36,11 +43,20 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                <span>Lusaka, Zambia</span>
+                <span>1517 Findeco House, Lusaka, Zambia</span>
               </div>
               <div className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                 <a href="mailto:info@zamclouds.com" className="hover:text-white transition-colors">info@zamclouds.com</a>
+              </div>
+              <div className="flex items-start gap-2 flex-col">
+                <div className="flex items-start gap-2">
+                  <Phone className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <a href="tel:+260964373241" className="hover:text-white transition-colors">+260 964 373 241</a>
+                </div>
+                <div className="flex items-start gap-2 ml-6">
+                  <a href="tel:0976349897" className="hover:text-white transition-colors">097 634 9897</a>
+                </div>
               </div>
             </div>
           </div>
@@ -50,6 +66,20 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-5">Services</h4>
             <ul className="space-y-3">
               {services.map((s) => (
+                <li key={s.label}>
+                  <Link href={s.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Solutions & Industries */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-5">Solutions</h4>
+            <ul className="space-y-3">
+              {solutions.map((s) => (
                 <li key={s.label}>
                   <Link href={s.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {s.label}
@@ -77,10 +107,10 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-5">Start a Project</h4>
             <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-              Ready to build something? Tell us about your requirements and we will respond within one business day.
+              Have a system in mind? Let's turn it into something that works.
             </p>
             <Link href="/contact" className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-amber-600 transition-colors">
-              Get in Touch
+              Start a Project
             </Link>
           </div>
         </div>

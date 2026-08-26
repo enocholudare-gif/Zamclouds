@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -52,40 +52,22 @@ export default function Hero() {
     }
   };
 
-  const [currentImage, setCurrentImage] = useState(0);
-  const images = [
-    'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1920'
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [images.length]);
+  // Background is now abstract CSS, images removed to meet blueprint guidelines.
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-dark flex items-center">
       
       {/* Dynamic Background / Media layer */}
       <div ref={overlayRef} className="absolute inset-0 z-0 overflow-hidden bg-dark-elevated">
-        <div ref={mediaRef} className="absolute inset-0 -top-[20%] h-[140%] w-full">
-          <div className="absolute inset-0 bg-dark/70 z-10 mix-blend-multiply" />
+        <div ref={mediaRef} className="absolute inset-0 -top-[20%] h-[140%] w-full flex items-center justify-center">
+          {/* Video Background */}
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-30">
+            <source src="https://videotourl.com/videos/1787773611279-d7206af5-cc53-4ec3-bcf1-a92ba6c4c69a.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/10 via-dark/60 to-dark z-10" />
           
-          {images.map((img, idx) => (
-            <img 
-              key={img}
-              src={img}
-              alt="Background"
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ease-in-out ${
-                idx === currentImage 
-                  ? 'opacity-100 scale-100' 
-                  : 'opacity-0 scale-110'
-              }`}
-            />
-          ))}
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-10" />
         </div>
       </div>
 
@@ -95,7 +77,7 @@ export default function Hero() {
           <div className="mb-6 overflow-hidden">
             <span ref={addToRefs} className="inline-flex items-center space-x-2 px-4 py-1.5 text-xs font-bold tracking-widest text-gray-300 uppercase bg-white/5 backdrop-blur-md rounded-full border border-white/10">
               <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
-              <span>We challenge the basics</span>
+              <span>Enterprise Software Engineering</span>
             </span>
           </div>
 
@@ -112,14 +94,14 @@ export default function Hero() {
           
           <div className="overflow-hidden mb-10 max-w-2xl">
             <span ref={addToRefs} className="block text-base md:text-lg text-gray-300 font-light leading-relaxed origin-bottom-left">
-              We engineer custom software, scalable cloud infrastructure, and practical AI solutions that elevate the digital experience.
+              Custom software engineering and intelligent platforms for organisations ready to scale.
             </span>
           </div>
 
           <div className="flex flex-wrap gap-4 items-center overflow-hidden">
             <span ref={addToRefs} className="block origin-bottom-left">
               <Link 
-                href="#contact" 
+                href="/contact" 
                 className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-white px-8 font-medium text-dark transition-all duration-500 hover:scale-[1.02] hover-target"
               >
                 <span className="relative z-10 tracking-wide uppercase font-bold text-sm">Start a Project</span>

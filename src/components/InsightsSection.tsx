@@ -9,7 +9,7 @@ const insights = [
     category: 'Cloud Engineering',
     title: 'Migrating Legacy Systems to Cloud-Native Architecture',
     date: 'Oct 24, 2025',
-    image: 'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
     featured: true,
   },
   {
@@ -17,7 +17,7 @@ const insights = [
     category: 'Artificial Intelligence',
     title: 'Practical AI for Supply Chain Optimization',
     date: 'Oct 18, 2025',
-    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     featured: false,
   },
   {
@@ -25,7 +25,7 @@ const insights = [
     category: 'Software Architecture',
     title: 'Building Resilient Microservices in 2026',
     date: 'Oct 12, 2025',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop',
     featured: false,
   }
 ];

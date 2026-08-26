@@ -13,7 +13,7 @@ const caseStudies = [
     tag: 'Workflow Automation',
     title: 'Project Management System',
     challenge: 'Replaced fragmented processes with software built around the way businesses actually operate.',
-    image: 'https://zamclouds.com/wp-content/uploads/2025/10/features01.jpg',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Cloud'],
   },
   {
@@ -22,17 +22,62 @@ const caseStudies = [
     tag: 'Digital Commerce',
     title: 'E-commerce Platform',
     challenge: 'End-to-end e-commerce platform handling complex product catalogues and local payment integration.',
-    image: 'https://images.pexels.com/photos/34078558/pexels-photo-34078558.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&pl=r734&w=800&h=600',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     technologies: ['React', 'Laravel', 'MySQL', 'REST API'],
   },
   {
     id: 3,
+    industry: 'Retail',
+    tag: 'Mobile Experience',
+    title: 'Mobile App for Retail',
+    challenge: 'Built a seamless mobile shopping experience focusing on intuitive design and fast checkouts.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    technologies: ['React Native', 'Firebase', 'Stripe'],
+  },
+  {
+    id: 4,
     industry: 'Logistics',
     tag: 'Supply Chain',
     title: 'Cloud-Based Inventory Management',
     challenge: 'Provided supply-chain visibility and tracking capabilities across multiple warehouses.',
-    image: 'https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     technologies: ['React Native', 'Node.js', 'PostgreSQL', 'Mobile App'],
+  },
+  {
+    id: 5,
+    industry: 'Business',
+    tag: 'Web Design',
+    title: 'Website Redesign for Local Business',
+    challenge: 'Revamped the digital presence to improve customer engagement and conversion rates.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
+  },
+  {
+    id: 6,
+    industry: 'Finance',
+    tag: 'Business Intelligence',
+    title: 'Data Analytics Dashboard',
+    challenge: 'Aggregated complex datasets into a real-time dashboard for executive decision making.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    technologies: ['Python', 'Tableau', 'AWS', 'React'],
+  },
+  {
+    id: 7,
+    industry: 'Marketing',
+    tag: 'Social Media',
+    title: 'Social Media Management Tool',
+    challenge: 'Created an automated tool for scheduling posts and analyzing cross-platform engagement metrics.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    technologies: ['Vue.js', 'Django', 'Celery', 'PostgreSQL'],
+  },
+  {
+    id: 8,
+    industry: 'Enterprise',
+    tag: 'CRM',
+    title: 'Customer Relationship Management System',
+    challenge: 'Developed a comprehensive CRM to streamline sales pipelines and improve client retention.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    technologies: ['React', 'Node.js', 'GraphQL', 'MongoDB'],
   }
 ];
 
@@ -95,11 +140,16 @@ export default function CaseStudies() {
       <div className="container mx-auto px-6 max-w-7xl relative z-20 flex flex-col justify-between h-full min-h-[70vh]">
         
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <p className="text-white text-sm uppercase tracking-widest font-bold flex items-center gap-2">
-            <span className="w-12 h-px bg-white inline-block"></span>
-            Featured Work
-          </p>
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-6">
+          <div>
+            <p className="text-white text-sm uppercase tracking-widest font-bold flex items-center gap-2 mb-4">
+              <span className="w-12 h-px bg-white inline-block"></span>
+              Our Work
+            </p>
+            <p className="text-gray-400 max-w-lg">
+              A showcase of our successful projects and solutions we’ve delivered to our clients.
+            </p>
+          </div>
           <div className="flex gap-4">
             <button onClick={prevSlide} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-dark transition-colors hover-target" data-cursor="interactive">
               <ChevronLeft className="w-5 h-5" />
@@ -141,8 +191,8 @@ export default function CaseStudies() {
                 ))}
               </div>
               
-              <Link href="/case-studies" className="group inline-flex items-center gap-4 text-white text-lg font-bold uppercase tracking-wide hover:text-accent transition-colors hover-target">
-                Explore Case Study 
+              <Link href="https://zamclouds.com/contact/" className="group inline-flex items-center gap-4 text-white text-lg font-bold uppercase tracking-wide hover:text-accent transition-colors hover-target">
+                Explore Our Services 
                 <span className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors">
                   <ArrowRight className="w-5 h-5" />
                 </span>

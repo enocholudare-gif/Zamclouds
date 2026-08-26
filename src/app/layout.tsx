@@ -6,14 +6,14 @@ import SmoothScroll from '@/components/SmoothScroll';
 import CustomCursor from '@/components/CustomCursor';
 
 export const metadata: Metadata = {
-  title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions in Zambia',
+  title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions',
   description:
-    'Zambian Cloud Programmers builds bespoke software, scalable cloud systems and practical AI solutions for businesses operating in Zambia and beyond — specialising in mining, agriculture, finance and enterprise technology.',
+    'Bespoke enterprise software, cloud infrastructure, AI automation, data and integration solutions engineered in Zambia for organisations ready to scale.',
   metadataBase: new URL('https://zamclouds.com'),
   openGraph: {
-    title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI',
+    title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions',
     description:
-      'Bespoke software, cloud infrastructure and AI systems engineered for Zambian and African businesses.',
+      'Bespoke enterprise software, cloud infrastructure, AI automation, data and integration solutions engineered in Zambia for organisations ready to scale.',
     url: 'https://zamclouds.com',
     siteName: 'Zambian Cloud Programmers',
     type: 'website',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI',
-    description: 'Bespoke software, cloud and AI solutions for Zambian businesses.',
+    title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions',
+    description: 'Bespoke enterprise software, cloud infrastructure, AI automation, data and integration solutions engineered in Zambia for organisations ready to scale.',
   },
   robots: {
     index: true,

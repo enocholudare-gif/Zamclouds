@@ -54,7 +54,7 @@ export default function AboutSection() {
             <div className="absolute inset-0 bg-accent/20 z-10 mix-blend-overlay" />
             <img 
               ref={imageRef}
-              src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+              src="/grid.svg" 
               alt="Team collaborating" 
               className="absolute top-[-20%] left-0 w-full h-[140%] object-cover scale-110"
             />

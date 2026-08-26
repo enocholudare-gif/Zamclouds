@@ -12,16 +12,19 @@ export default function TrustStrip() {
     // Ultra smooth GSAP marquee
     gsap.to(textRef.current, {
       xPercent: -50,
-      ease: 'none',
-      duration: 35, // Slower, more premium speed
+      ease: 'power1.inOut',
+      duration: 60, // Much slower speed
       repeat: -1,
+      yoyo: true // Added yoyo for a different animation feel
     });
   }, { scope: containerRef });
 
   const items = [
-    'Mining & Resources', 'Agriculture', 'Finance & Banking', 
-    'Government', 'Retail & Logistics', 'Enterprise & SMEs', 
-    'Cloud Infrastructure', 'Artificial Intelligence'
+    'Powering 50+ Enterprise Systems', 
+    '10+ Years Engineering Excellence', 
+    'Deployed across 4 African Countries', 
+    'Secure Cloud Infrastructure', 
+    'Bespoke Software Engineering'
   ];
 
   // Quadruple items for safe infinite scrolling width
