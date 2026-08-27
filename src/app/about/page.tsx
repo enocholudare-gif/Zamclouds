@@ -220,7 +220,7 @@ export default function AboutPage() {
             <p className="text-xl text-white font-medium mb-8">
               Head of Business and Strategic Development
             </p>
-            <div className="space-y-6 text-gray-400 text-lg text-left leading-relaxed">
+            <div className="space-y-6 text-gray-400 text-lg text-left leading-relaxed font-sans">
               <p>
                 Mr. Clement Kamanda is the visionary force behind Zambian Cloud Programmers. A dynamic leader and tech entrepreneur, Mr. Kamanda has dedicated his career to driving digital transformation and innovation across Zambia and Africa.
               </p>

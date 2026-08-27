@@ -46,6 +46,21 @@ export default function AISection() {
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
               We build AI systems focused on measurable operational outcomes. Every capability we implement is tied to a specific business problem and a clear improvement in efficiency, accuracy or decision quality.
             </p>
+            
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:bg-accent/20 transition-colors" />
+              <div className="relative z-10 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                  <span className="text-xl">🏆</span>
+                </div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">Official Sponsor & Initiator</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    We are proud to be the initiators and official sponsors of the National AI Summit, driving the conversation and innovation around artificial intelligence across the nation.
+                  </p>
+                </div>
+              </div>
+            </div>
             <Link href="/solutions" className="inline-flex items-center gap-4 text-white font-bold uppercase tracking-wide hover:text-accent transition-colors hover-target" data-cursor="interactive">
               Explore AI solutions <ArrowRight className="w-6 h-6" />
             </Link>

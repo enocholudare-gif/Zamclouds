@@ -16,7 +16,7 @@ const services = [
     id: '01',
     title: 'Custom Software Engineering',
     description: 'Bespoke enterprise systems, SaaS platforms, and core operational software built for scale.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop', // Abstract placeholder instead of stock photo
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
     href: '/services/custom-software-engineering'
   },
   {
@@ -44,8 +44,64 @@ const services = [
     id: '05',
     title: 'Data & Business Intelligence',
     description: 'Data warehousing, predictive analytics, and real-time visualization dashboards.',
-    image: 'https://cdn.phototourl.com/free/2026-08-26-d296ef90-5753-406f-b38a-367ebc31e545.jpg', // Reusing the cloud image
+    image: 'https://cdn.phototourl.com/free/2026-08-26-d296ef90-5753-406f-b38a-367ebc31e545.jpg',
     href: '/services/data-business-intelligence'
+  },
+  {
+    id: '06',
+    title: 'CCTV Installation',
+    description: 'State-of-the-art surveillance systems for enterprise and residential security.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
+    href: '/services/cctv-installation'
+  },
+  {
+    id: '07',
+    title: 'Smart Home Solutions',
+    description: 'Intelligent home automation for security, energy management, and comfort.',
+    image: 'https://cdn.phototourl.com/free/2026-08-26-be234f86-caa1-4bd7-b5f1-c243bba5dc97.jpg',
+    href: '/services/smart-home'
+  },
+  {
+    id: '08',
+    title: 'Digital Marketing & Branding',
+    description: 'Data-driven marketing, SEO, and brand identity development for digital growth.',
+    image: 'https://cdn.phototourl.com/free/2026-08-26-d296ef90-5753-406f-b38a-367ebc31e545.jpg',
+    href: '/services/digital-marketing'
+  },
+  {
+    id: '09',
+    title: 'IT Consultancy',
+    description: 'Strategic IT leadership, digital transformation roadmaps, and technical advisory.',
+    image: 'https://cdn.phototourl.com/free/2026-08-26-54c0d0c4-a610-4c61-ba18-818c277b6736.webp',
+    href: '/services/it-consultancy'
+  },
+  {
+    id: '10',
+    title: 'Emerging Technology',
+    description: 'Integration of IoT, Blockchain, and advanced emerging tech into your business.',
+    image: 'https://cdn.phototourl.com/free/2026-08-26-d296ef90-5753-406f-b38a-367ebc31e545.jpg',
+    href: '/services/emerging-technology'
+  },
+  {
+    id: '11',
+    title: 'Cyber Security',
+    description: 'Comprehensive network defense, risk assessments, and proactive threat management.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop',
+    href: '/services/cyber-security'
+  },
+  {
+    id: '12',
+    title: 'Network Infrastructure',
+    description: 'Robust enterprise networking, structured cabling, and wireless connectivity solutions.',
+    image: 'https://cdn.phototourl.com/free/2026-08-26-be234f86-caa1-4bd7-b5f1-c243bba5dc97.jpg',
+    href: '/services/network'
+  },
+  {
+    id: '13',
+    title: 'Supplier of IT Hardware',
+    description: 'Procurement of enterprise-grade servers, workstations, and network equipment.',
+    image: 'https://cdn.phototourl.com/free/2026-08-26-d296ef90-5753-406f-b38a-367ebc31e545.jpg',
+    href: '/services/it-hardware'
   }
 ];
 

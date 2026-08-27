@@ -14,6 +14,7 @@ const navLinks = [
   { label: 'Products', href: '/products' },
   { label: 'Work', href: '/case-studies' },
   { label: 'Insights', href: '/insights' },
+  { label: 'CSR', href: '/csr' },
   { label: 'About', href: '/about' },
   { label: 'Contact Us', href: '/contact' },
 ];
@@ -121,19 +122,19 @@ export default function Navbar() {
       {/* Full Screen Menu */}
       <div 
         ref={menuRef}
-        className={`fixed inset-0 z-40 bg-dark flex flex-col justify-center px-6 lg:px-20 ${!open && 'pointer-events-none opacity-0'}`}
+        className={`fixed inset-0 z-40 bg-dark flex flex-col pt-24 pb-8 overflow-y-auto px-6 lg:px-20 ${!open && 'pointer-events-none opacity-0'}`}
         style={{ clipPath: 'inset(0% 0% 100% 0%)' }}
       >
         <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none" />
         
-        <nav className="flex flex-col gap-4 mt-20">
+        <nav className="flex flex-col gap-4 mt-8">
           {navLinks.map((link) => (
             <div key={link.href} className="overflow-hidden">
               <Link
                 ref={addLinkRef}
                 href={link.href}
                 onClick={closeMenu}
-                className="block text-5xl md:text-7xl font-display font-bold text-white hover:text-accent transition-colors origin-bottom-left"
+                className="block text-4xl md:text-6xl font-display font-bold text-white hover:text-accent transition-colors origin-bottom-left"
               >
                 {link.label}
               </Link>
