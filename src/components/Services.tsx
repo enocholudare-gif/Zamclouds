@@ -111,7 +111,12 @@ function ServiceItem({ service, idx }: { service: typeof services[0], idx: numbe
   const [isFlipped, setIsFlipped] = useState(false);
   const router = useRouter();
 
-  const handleRowClick = () => {
+  const handleRowClick = (e: React.MouseEvent) => {
+    // If the user clicked on a link, let the link handle navigation
+    if ((e.target as HTMLElement).closest('a')) {
+      return;
+    }
+    
     if (window.innerWidth < 768) {
       setIsHovered(!isHovered);
     } else {
