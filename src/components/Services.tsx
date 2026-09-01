@@ -109,8 +109,8 @@ function ServiceItem({ service, idx }: { service: typeof services[0], idx: numbe
   const [isHovered, setIsHovered] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  return (
-      <Link 
+    return (
+      <Link
         href={service.href}
         className="service-item block opacity-0 relative border-b border-white/10 transition-colors duration-500 hover:bg-white/5 cursor-pointer py-8 md:py-10 px-4 md:px-8 group"
         onMouseEnter={() => setIsHovered(true)}
