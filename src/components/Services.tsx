@@ -132,9 +132,9 @@ function ServiceItem({ service, idx }: { service: typeof services[0], idx: numbe
               <p className="text-gray-400 text-base md:text-lg">
                 {service.description}
               </p>
-              <span className="mt-4 md:hidden inline-block text-xs uppercase tracking-widest font-bold text-accent underline">
+              <Link href={service.href} className="mt-4 md:hidden inline-block text-xs uppercase tracking-widest font-bold text-accent hover:text-white transition-colors underline">
                 View Capabilities
-              </span>
+              </Link>
             </div>
             
             <div className={`hidden md:flex w-12 h-12 rounded-full border border-white/20 items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>

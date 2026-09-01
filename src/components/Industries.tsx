@@ -26,7 +26,7 @@ const industries = [
   },
   {
     slug: 'finance',
-    image: 'https://images.unsplash.com/photo-1616012480717-fd9867059ca0?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
     title: 'Finance & Banking',
     description: 'Secure financial software, digital customer experiences, loan management, and process automation for modern institutions.',
     tags: ['FinTech', 'Automation', 'Compliance'],
