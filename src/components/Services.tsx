@@ -110,11 +110,11 @@ function ServiceItem({ service, idx }: { service: typeof services[0], idx: numbe
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-      <div 
-        className="service-item opacity-0 relative border-b border-white/10 transition-colors duration-500 hover:bg-white/5 cursor-pointer py-8 md:py-10 px-4 md:px-8 group"
+      <Link 
+        href={service.href}
+        className="service-item block opacity-0 relative border-b border-white/10 transition-colors duration-500 hover:bg-white/5 cursor-pointer py-8 md:py-10 px-4 md:px-8 group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => setIsHovered(!isHovered)}
       >
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-8 relative z-10">
           
@@ -132,9 +132,9 @@ function ServiceItem({ service, idx }: { service: typeof services[0], idx: numbe
               <p className="text-gray-400 text-base md:text-lg">
                 {service.description}
               </p>
-              <Link href={service.href} className="mt-4 md:hidden inline-block text-xs uppercase tracking-widest font-bold text-accent hover:text-white transition-colors underline">
+              <span className="mt-4 md:hidden inline-block text-xs uppercase tracking-widest font-bold text-accent hover:text-white transition-colors underline">
                 View Capabilities
-              </Link>
+              </span>
             </div>
             
             <div className={`hidden md:flex w-12 h-12 rounded-full border border-white/20 items-center justify-center shrink-0 transition-all duration-500 ${isHovered ? 'bg-accent border-accent -rotate-45' : 'rotate-0'}`}>
@@ -150,7 +150,7 @@ function ServiceItem({ service, idx }: { service: typeof services[0], idx: numbe
           <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
         </div>
-      </div>
+      </Link>
   );
 }
 
