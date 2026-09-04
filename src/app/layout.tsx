@@ -9,6 +9,23 @@ export const metadata: Metadata = {
   title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions',
   description:
     'Bespoke enterprise software, cloud infrastructure, AI automation, data and integration solutions engineered in Zambia for organisations ready to scale.',
+  keywords: [
+    'Zambian Cloud Programmers',
+    'Custom Software Development Zambia',
+    'Cloud Solutions Zambia',
+    'Cloud Infrastructure Africa',
+    'AI Automation Zambia',
+    'Enterprise Software Development',
+    'Tech Agency Zambia',
+    'Web Development Zambia',
+    'App Development Zambia',
+    'Data Integration Solutions',
+    'Digital Transformation Zambia',
+    'IT Consulting Zambia',
+    'Software Engineers Zambia',
+    'Cloud Hosting Zambia',
+    'Fintech Development Zambia'
+  ],
   metadataBase: new URL('https://zamclouds.com'),
   openGraph: {
     title: 'Zambian Cloud Programmers | Custom Software, Cloud & AI Solutions',
